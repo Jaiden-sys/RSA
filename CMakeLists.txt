@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(RSA_Crypto main.cpp rsa/rsa.h
         rsa/rsa.cpp
-        rsa/math.h
-        rsa/math.cpp)
+        rsa/rsamath.h
+        rsa/rsamath.cpp)
