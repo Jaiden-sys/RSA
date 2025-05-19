@@ -2,7 +2,6 @@
 // Created by roman on 17.05.25.
 //
 #include "rsamath.h"
-#include <numeric>
 #include <random>
 #include <cmath>
 #include <cstdint>
@@ -26,7 +25,7 @@ uint64_t math::modPow(uint64_t base, uint64_t exp, uint64_t mod) {
     while (exp > 0) {
         if (exp % 2 == 1) {result = (result*base) % mod;}
         base = (base * base) % mod;
-        exp >>= 1; //деление на 2
+        exp >>= 1; //exp /= 2
     }
     return result;
 }
@@ -38,9 +37,9 @@ uint64_t math::random(uint64_t min,uint64_t max) {
 }
 
 bool math::isPrimeMillerRabin(uint64_t n) {
-
-    if (n <= 1) return false;
-    if (n <= 3) return true;
+    for (uint64_t p : {2,3,5,6,11,13,17,19,23,29}) {
+        if (n % p == 0){return n == p;}
+    }
     if ((n & 1) == 0) return false; //n % 2 == 0
 
     uint64_t d = n - 1;
@@ -69,3 +68,11 @@ bool math::isPrimeMillerRabin(uint64_t n) {
     }
     return true;
 }
+
+uint64_t math::generatePrime(uint64_t min, uint64_t max) {
+    while (true) {
+        uint64_t candidate = random(min,max);
+        if (isPrimeMillerRabin(candidate)) return candidate;
+    }
+}
+
