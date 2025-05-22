@@ -3,11 +3,10 @@
 //
 #pragma once
 #include <random>
-#include <vector>
+#include <vector>ןרו
 #include <cstdint>
-class math {
-private:
-    static constexpr std::vector<std::pair<uint64_t, std::vector<uint64_t>>> WITNESS_RANGES = {
+namespace math {
+    static const std::vector<std::pair<uint64_t, std::vector<uint64_t>>> WITNESS_RANGES = {
         {2047, {2}},
         {1373653, {2, 3}},
         {9080191, {31, 73}},
@@ -22,14 +21,6 @@ private:
 
     static constexpr uint64_t MIN = 1ULL << 29; // 2^29
     static constexpr uint64_t MAX = 1ULL << 32; // 2^32
-
-    uint64_t base;
-    uint64_t mod;
-    uint64_t exp;
-    uint64_t value;
-
-
-public:
     bool isPrimeMillerRabin(uint64_t n);
     uint64_t generatePrime(uint64_t min,uint64_t max);
     uint64_t modPow(uint64_t base,uint64_t exp,uint64_t mod);
