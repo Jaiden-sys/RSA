@@ -38,3 +38,7 @@ void RSA::calcPublicExponent() {
         e = math::random(3, phi - 1);
     } while (!isCoprime(e, phi));
 }
+
+void RSA::calcSecretExponent(uint64_t e, uint64_t phi) {
+    if (math::extended_gcd(e,phi))
+}

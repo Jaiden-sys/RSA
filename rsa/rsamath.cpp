@@ -7,18 +7,6 @@
 #include <cstdint>
 //#include <boost/multiprecision/cpp_int.hpp>
 namespace math {
-    const std::vector<std::pair<uint64_t, std::vector<uint64_t>>> WITNESS_RANGES = {
-        {2047, {2}},
-        {1373653, {2, 3}},
-        {9080191, {31, 73}},
-        {25326001, {2, 3, 5}},
-        {3215031751, {2, 3, 5, 7}},
-        {4759123141, {2, 7, 61}},
-        {1122004669633, {2, 13, 23, 1662803}},
-        {2152302898747, {2, 3, 5, 7, 11}},
-        {3474749660383, {2, 3, 5, 7, 11, 13}},
-        {341550071728321, {2, 3, 5, 7, 11, 13, 17}}
-    };
 
     uint64_t modPow(uint64_t base, uint64_t exp, uint64_t mod) {
         uint64_t result = 1;
@@ -77,5 +65,18 @@ namespace math {
             if (isPrimeMillerRabin(candidate)) return candidate;
         }
     }
+    uint64_t extended_gcd(uint64_t a, uint64_t b, uint64_t& x, uint64_t& y) {
+        if (a == 0) {
+            x = 0;
+            y = 1;
+            return b;
+        }
+        uint64_t x1, y1;
+        uint64_t d = extended_gcd(b % a, a, x1, y1);
+        x = y1 - (b / a) * x1;
+        y = x1;
+        return d;
+    }
+
 };
 

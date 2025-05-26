@@ -23,9 +23,11 @@ public:
     void calcModule();
     void calcEuler();
     void calcPublicExponent();
+    void calcSecretExponent();
     uint64_t getP() const { return p; }
     uint64_t getQ() const { return q; }
     uint64_t getModule() const { return module; }
     uint64_t getEuler() const { return phi; }
     uint64_t getPublicExponent() const { return e; }
+    uint64_t getSecretExponent() const {return d;}
 };
